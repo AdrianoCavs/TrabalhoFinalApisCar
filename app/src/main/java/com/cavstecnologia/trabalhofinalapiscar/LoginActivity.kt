@@ -74,7 +74,7 @@ class LoginActivity : AppCompatActivity() {
         FirebaseAuth.getInstance().signInWithCredential(credential)
             .addOnFailureListener { //abaixo, pega a msg de exception retornada do FirebaseAuth, caso seja nula (?:) mostra a msg padrao
                 val message = it.message ?: getString(R.string.error_login_verification);
-                Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, message, Toast.LENGTH_LONG).show();
             }
             .addOnSuccessListener { navigateToMainActivity() }
     }
