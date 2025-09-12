@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "16898647873",
+    "project_id": "trabalhofinalapiscars",
+    "storage_bucket": "trabalhofinalapiscars.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:16898647873:android:7797a3541ca3783a4723c0",
+        "android_client_info": {
+          "package_name": "com.cavstecnologia.trabalhofinalapiscar"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCBqwb3j2UQEMZWPv-4K3D6LALvmSrajWM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
