@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">TrabalhoFinalApisCar</string>
+    <string name="app_name">Anota a placa!</string>
     <string name="error_login">Erro ao fazer login: %1$s</string>
     <string name="verification_code_sent">Código enviado por SMS</string>
     <string name="error_login_verification">Erro ao verificar código SMS</string>
