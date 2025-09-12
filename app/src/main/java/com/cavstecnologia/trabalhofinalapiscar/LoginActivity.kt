@@ -3,6 +3,7 @@ package com.cavstecnologia.trabalhofinalapiscar
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -54,7 +55,8 @@ class LoginActivity : AppCompatActivity() {
                 override fun onVerificationCompleted(p0: PhoneAuthCredential) { }
 
                 override fun onVerificationFailed(exception: FirebaseException) {
-                    Toast.makeText(this@LoginActivity, getString(R.string.error_login, exception.message), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this@LoginActivity, getString(R.string.error_login, exception.message), Toast.LENGTH_LONG).show();
+                    Log.e("HELLO_WORLD", exception.message?:"Erro FirebaseAuth");
                 }
                 override fun onCodeSent(verficationId: String, token: PhoneAuthProvider.ForceResendingToken) {
                     super.onCodeSent(verficationId, token);
@@ -74,6 +76,7 @@ class LoginActivity : AppCompatActivity() {
         FirebaseAuth.getInstance().signInWithCredential(credential)
             .addOnFailureListener { //abaixo, pega a msg de exception retornada do FirebaseAuth, caso seja nula (?:) mostra a msg padrao
                 val message = it.message ?: getString(R.string.error_login_verification);
+                Log.e("HELLO_WORLD", it.message?:"Erro FirebaseAuth");
                 Toast.makeText(this, message, Toast.LENGTH_LONG).show();
             }
             .addOnSuccessListener { navigateToMainActivity() }
