@@ -70,6 +70,10 @@ dependencies {
 
     implementation(libs.kotlinx.metadata.jvm)
 
+
+    implementation("com.google.android.material:material:1.12.0")
+    implementation("com.squareup.picasso:picasso:2.71828")
+
     // Coroutines
     implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3")
     implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
