@@ -68,6 +68,7 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 
+    implementation(libs.kotlinx.metadata.jvm)
 
     // Coroutines
     implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3")
@@ -83,10 +84,10 @@ dependencies {
     implementation ("com.google.android.gms:play-services-location:21.3.0")
 
     // Room
-    implementation ("androidx.room:room-runtime:2.6.1")
-    annotationProcessor ("androidx.room:room-compiler:2.6.1")
-    kapt ("androidx.room:room-compiler:2.6.1")
-    implementation ("androidx.room:room-ktx:2.6.1")
+    implementation ("androidx.room:room-runtime:2.8.0")
+    annotationProcessor ("androidx.room:room-compiler:2.8.0")
+    kapt ("androidx.room:room-compiler:2.8.0")
+    implementation ("androidx.room:room-ktx:2.8.0")
 
     // Firebase
     implementation (platform("com.google.firebase:firebase-bom:34.2.0"))
