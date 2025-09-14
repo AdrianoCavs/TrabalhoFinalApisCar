@@ -11,7 +11,7 @@ data class CarValue(
     val name: String,
     val licence: String,
     val imageUrl: String,
-    val location: CarLocation
+    val place: CarLocation
 );
 
 data class CarLocation(

@@ -81,7 +81,7 @@ class MainActivity : AppCompatActivity() {
 //                            intent.putExtra("carId", car.id);
 //                            startActivity(intent);
                             //TODO CRIAR A TELA CarDetailActivity
-                            //startActivity(newIntent(CarDetailActivity.newIntent(this@MainActivity, car.id) ));
+                            startActivity(CarDetailActivity.newIntent( this@MainActivity, car.id) );
                         }
                         binding.recyclerView.adapter = adapter;
                     }

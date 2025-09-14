@@ -4,4 +4,8 @@
     <string name="verification_code_sent">Código enviado por SMS</string>
     <string name="error_login_verification">Erro ao verificar código SMS</string>
     <string name="unknown_error">Erro desconhecido</string>
+    <string name="success_delete">Carro excluído com sucesso!</string>
+    <string name="error_delete">Erro ao excluir o carro!</string>
+    <string name="error_update">Erro ao atualizar o carro</string>
+    <string name="success_update">Carro atualizado com sucesso</string>
 </resources>

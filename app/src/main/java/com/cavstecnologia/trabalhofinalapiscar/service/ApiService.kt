@@ -23,6 +23,6 @@ interface ApiService {
     @POST("car")
     suspend fun addCar(@Body car: CarValue): Car
 
-    @PATCH("car/{id}}")
+    @PATCH("car/{id}")
     suspend fun updateCar(@Path("id") id: String, @Body car : CarValue): Car
 }

@@ -42,5 +42,5 @@ class CarAdapter(
         val licence: TextView = view.findViewById(R.id.licence);
 
     }
-
 }
+
