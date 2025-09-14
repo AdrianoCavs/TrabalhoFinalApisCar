@@ -4,28 +4,30 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.cavstecnologia.trabalhofinalapiscar.databinding.ActivityCarDetailBinding
 import com.cavstecnologia.trabalhofinalapiscar.model.Car
-import com.cavstecnologia.trabalhofinalapiscar.model.CarValue
 import com.cavstecnologia.trabalhofinalapiscar.service.RetrofitClient
 import com.cavstecnologia.trabalhofinalapiscar.service.safeApiCall
 import com.cavstecnologia.trabalhofinalapiscar.service.Result
 import com.cavstecnologia.trabalhofinalapiscar.ui.loadUrl
+import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
+import com.google.android.gms.maps.OnMapReadyCallback
+import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.MarkerOptions
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class CarDetailActivity : AppCompatActivity() {
+class CarDetailActivity : AppCompatActivity(), OnMapReadyCallback {
     private lateinit var binding: ActivityCarDetailBinding;
     private lateinit var car: Car;
-    //private lateinit var mMap: GoogleMap;
+    private lateinit var mMap: GoogleMap;
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,7 +36,12 @@ class CarDetailActivity : AppCompatActivity() {
         setContentView(binding.root);
         setupView();
         loadItem();
-        //setupGoogleMap(); TODO GOOGLE MAP
+        setupGoogleMap();
+    }
+
+    private fun setupGoogleMap(){
+        val mapFragment = supportFragmentManager.findFragmentById(R.id.map) as SupportMapFragment;
+        mapFragment.getMapAsync(this)
     }
 
     private fun loadItem() {
@@ -56,7 +63,6 @@ class CarDetailActivity : AppCompatActivity() {
                     }
                 }
             }
-            //Log.d("Hello World", "Carregou o Detalhe de $result")
         }
     }
 
@@ -65,8 +71,18 @@ class CarDetailActivity : AppCompatActivity() {
         binding.year.text = car.value.year;
         binding.licence.setText(car.value.licence);
         binding.image.loadUrl(car.value.imageUrl);
-        //loadCarLocationInGoogleMap(); TODO GOOGLE MAP
+        loadCarLocationInGoogleMap();
     }
+
+    private fun loadCarLocationInGoogleMap() {
+        car.value.place.apply {
+            binding.googleMapContent.visibility = View.VISIBLE;
+            val latLong = LatLng(lat, long);
+            mMap.addMarker(MarkerOptions().position(latLong));
+            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLong, 17f))
+        }
+    }
+
     private fun handleError() {}
 
     private fun setupView() {
@@ -107,6 +123,22 @@ class CarDetailActivity : AppCompatActivity() {
                     is Result.Success<*> -> { Toast.makeText(this@CarDetailActivity, R.string.success_update, Toast.LENGTH_SHORT ).show(); finish() };
                 }
             }
+        }
+    }
+
+    override fun onMapReady(googleMap: GoogleMap) {
+        mMap = googleMap;
+        if (::car.isInitialized){
+            loadItemLocationInGoogleMap();
+        }
+    }
+
+    private fun loadItemLocationInGoogleMap(){
+        car.value.place.apply {
+            binding.googleMapContent.visibility = View.VISIBLE;
+            val latLong = LatLng(lat, long);
+            mMap.addMarker(MarkerOptions().position(latLong));//.title(name));
+            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLong, 17f))
         }
     }
 

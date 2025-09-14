@@ -24,12 +24,16 @@
         android:theme="@style/Theme.TrabalhoFinalApisCar"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".NewCarActivity"
+            android:exported="false" />
+        <activity
             android:name=".CarDetailActivity"
             android:exported="false" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyCq1Raml-ossCccp4wHzxFxfGmrqEM5UtI" /> <!-- O android:authorities será o seu packageId + .fileprovider -->
+            android:value="AIzaSyA_utx6gbGdKWp-eOcBC88yiw9cZ6F7q8I" />
+            <!--android:value="AIzaSyCq1Raml-ossCccp4wHzxFxfGmrqEM5UtI" />  O android:authorities será o seu packageId + .fileprovider -->
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="com.cavstecnologia.trabalhofinalapiscar.fileprovider"

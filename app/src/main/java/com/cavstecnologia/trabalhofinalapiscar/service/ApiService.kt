@@ -17,6 +17,9 @@ interface ApiService {
     @GET("car/{id}")
     suspend fun getCar(@Path("id") id: String): Car;
 
+    @GET("car/{id}")
+    suspend fun getCarValue(@Path("id") id: String): CarValue;
+
     @DELETE("car/{id}")
     suspend fun deleteCar(@Path("id") id: String);
 

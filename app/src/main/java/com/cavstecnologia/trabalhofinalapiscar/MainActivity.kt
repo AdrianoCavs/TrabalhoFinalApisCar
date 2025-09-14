@@ -76,27 +76,18 @@ class MainActivity : AppCompatActivity() {
                 when (result) {
                     is Result.Success -> {
                         val adapter = CarAdapter(result.data) { car ->
-                            Log.d("TAG", "Clicou no carro: ${car.name}");
-//                            val intent = Intent(this@MainActivity, CarDetailActivity::class.java);
-//                            intent.putExtra("carId", car.id);
-//                            startActivity(intent);
-                            //TODO CRIAR A TELA CarDetailActivity
                             startActivity(CarDetailActivity.newIntent( this@MainActivity, car.id) );
                         }
                         binding.recyclerView.adapter = adapter;
                     }
-
-                    is Result.Error -> {
-                        Toast.makeText(this@MainActivity,"Erro ao carregar carros da API",Toast.LENGTH_SHORT).show(); }
-
+                    is Result.Error -> { Toast.makeText(this@MainActivity,"Erro ao carregar carros da API",Toast.LENGTH_SHORT).show(); }
                 }
             }
         }
     }
 
     private fun navigateToNewCar(){
-        //TODO CRIAR A TELA NewCarActivity
-        //startActivity(NewCarActivity.newIntent(this))
+        startActivity(NewCarActivity.newIntent(this))
     }
     private fun requestLocationPermission() {
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
@@ -156,6 +147,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     companion object{
+        //USAR ESSE CARA A PARTIR DE LOGINACTIVITY
         fun newIntent(context: Context) = Intent(context, MainActivity::class.java);
     }
 }
