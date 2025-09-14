@@ -12,7 +12,7 @@ import retrofit2.http.Path
 interface ApiService {
 
     @GET("car")
-    suspend fun getCars(): List<Car>;
+    suspend fun getCars(): List<CarValue>;
 
     @GET("car/{id}")
     suspend fun getCar(@Path("id") id: String): Car;

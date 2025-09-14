@@ -20,6 +20,8 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintBottom_toTopOf="@id/addCta"
+                app:layout_constraintVertical_bias="0.0"
+                app:layout_constraintHorizontal_bias="0.0"
                 tools:listitem="@layout/item_car_layout" />
 
             <androidx.constraintlayout.widget.Guideline
