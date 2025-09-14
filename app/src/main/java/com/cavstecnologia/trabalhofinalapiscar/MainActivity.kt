@@ -130,10 +130,11 @@ class MainActivity : AppCompatActivity() {
         }
         fusedLocationProviderClient.lastLocation.addOnCompleteListener { task: Task<Location> ->
             if (task.isSuccessful) {
-                val location = task.result
-                Log.d("Hello World", "Lat: ${location.latitude} Long: ${location.longitude}")
-                val userLocation =
-                    UserLocation(latitude = location.latitude, longitude = location.longitude)
+                val location: Location = task.result ?: Location("").apply { latitude = 0.0; longitude = 0.0 }
+                Log.d("TAG", "Location: ${location}");
+                Log.d("Hello World", "Lat: ${location.latitude} Long: ${location.longitude}");
+
+                val userLocation = UserLocation(latitude = location.latitude, longitude = location.longitude)
 
                 CoroutineScope(Dispatchers.IO).launch {
                     DatabaseBuilder.getInstance()

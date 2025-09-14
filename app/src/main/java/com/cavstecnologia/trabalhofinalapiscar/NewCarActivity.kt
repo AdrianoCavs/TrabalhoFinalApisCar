@@ -1,5 +1,6 @@
 package com.cavstecnologia.trabalhofinalapiscar
 
+import android.Manifest
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
@@ -14,6 +15,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.annotation.RequiresPermission
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -178,11 +180,15 @@ class NewCarActivity : AppCompatActivity(), OnMapReadyCallback {
         }
     }
 
-    @SuppressLint("MissingPermission")
+    //@SuppressLint("MissingPermission")
+    @RequiresPermission(allOf = [Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION])
     private fun loadCurrentLocation() {
         mMap.isMyLocationEnabled = true;
         fusedLocationProviderClient.lastLocation.addOnSuccessListener { location ->
-            val currentLocationLatLng = LatLng(location.latitude, location.longitude);
+            val currentLocationLatLng: LatLng; //LatLng(location.latitude, location.longitude);
+            if (location == null) { currentLocationLatLng = LatLng(-23.550502, -46.633933); }
+            else { currentLocationLatLng = LatLng(location.latitude, location.longitude); }
+
             mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(currentLocationLatLng, 15f))
         }
     }
